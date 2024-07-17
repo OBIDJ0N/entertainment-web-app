@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: "Outfit", sans-serif;
+    background-color: #10141E;
+}
+
+@layer components {
+    .form-input {
+        @apply w-full bg-transparent p-[17px] border-0 outline-none transition-all slashed-zero caret-red;
+    }
+
+    .input-box {
+        @apply border-b-[1px] border-b-greyish-blue;
+    }
+}
+
+.MuiPaginationItem-root {
+    color: white !important;
+}
+
+.Mui-selected {
+    background: #FC4747 !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: white !important;
+}
+
+.custom-swiper .swiper-button-prev {
+    top: 40%;
+    left: 0;
+}
+
+.custom-swiper .swiper-button-next {
+    top: 40%;
+    right: 0;
+}
+
+.custom-swiper .swiper-button-prev::after,
+.custom-swiper .swiper-button-next::after {
+    font-size: 15px;
+    background-color: #5A698F;
+    padding: 10px;
+    z-index: 1000;
+    border-radius: 50%;
+}
+
+.custom-swiper {
+    height: 16rem;
+}
+
+.swiper-slide .custom-play {
+    gap: 1rem !important;
+}
+
+.swiper-slide .custom-play {
+    gap: .5rem !important;
+}
+
+.swiper-slide .custom-play img {
+    width: 25px;
+}
+
+.swiper-slide .custom-play span {
+    font-size: 15px !important;
+}
+
+
+@media screen and (max-width: 1440px) {
+    .main {
+        height: -webkit-fill-available;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .MuiPaginationItem-root {
+        font-size: '0.75rem' !important;
+        margin: 0 !important;
+    }
+
+    .video-player .swiper-button-prev::after,
+    .video-player .swiper-button-next::after {
+        font-size: 2rem !important;
+    }
+    .similar-swiper .swiper-button-prev {
+        top: 30%;
+    }
+    
+    .similar-swiper .swiper-button-next {
+        top: 30%;
+    }
+}
