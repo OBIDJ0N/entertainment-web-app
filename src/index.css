@@ -88,10 +88,11 @@ body {
     .video-player .swiper-button-next::after {
         font-size: 2rem !important;
     }
+
     .similar-swiper .swiper-button-prev {
         top: 30%;
     }
-    
+
     .similar-swiper .swiper-button-next {
         top: 30%;
     }
