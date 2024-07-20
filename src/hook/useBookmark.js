@@ -3,6 +3,7 @@ import BookmarkService from '../service/bookmark';
 import { useDispatch } from 'react-redux';
 import useAuth from './useAuth';
 import { fetchBookmarks } from '../slice/bookmark';
+import { bookmarkedFailure, bookmarkedSuccess, clearAlert } from '../slice/alert';
 
 const useBookmark = (item) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -13,7 +14,6 @@ const useBookmark = (item) => {
     const fetchInitialBookmarks = async () => {
       try {
         if (!isAuthenticated || !item?.id) return;
-
         const bookmarks = await BookmarkService.getBookmarks();
         const isAlreadyBookmarked = bookmarks.some(bookmark => bookmark.id === item.id);
         setIsBookmarked(isAlreadyBookmarked);
@@ -29,20 +29,22 @@ const useBookmark = (item) => {
     try {
       if (!isAuthenticated) {
         console.error("User is not authenticated.");
+        dispatch(bookmarkedFailure()); 
         return;
       }
       if (!item?.id) {
         console.error("Item ID is undefined.");
         return;
       }
-
       if (isBookmarked) {
         await BookmarkService.removeBookmark(item.id);
       } else {
         await BookmarkService.addBookmark(item);
+        dispatch(bookmarkedSuccess()); 
       }
       setIsBookmarked(prev => !prev);
       dispatch(fetchBookmarks());
+      console.log(isBookmarked);
     } catch (error) {
       console.error("Error updating bookmark:", error.message);
     }

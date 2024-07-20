@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AuthService from '../service/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { registAndLoginFailure, registAndLoginStart, registAndLoginSuccess } from '../slice/auth';
+import { registerAndLoginFailure, registerAndLoginStart, registerAndLoginSuccess } from '../slice/auth';
 import { Alert, Box, Button, CircularProgress, Stack, Typography } from '@mui/material';
 import { logo } from '../constants';
 import { Input } from '../ui';
@@ -22,14 +22,14 @@ const Login = () => {
       setError("Can't be empty");
       return;
     }
-    dispatch(registAndLoginStart());
+    dispatch(registerAndLoginStart());
     try {
       const response = await AuthService.userLogin(email, password)
-      dispatch(registAndLoginSuccess(response))
+      dispatch(registerAndLoginSuccess(response))
       navigate('/')
       console.log(response);
     } catch (error) {
-      dispatch(registAndLoginFailure(error.message))
+      dispatch(registerAndLoginFailure(error.message))
     }
   };
 

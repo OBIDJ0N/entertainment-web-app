@@ -14,13 +14,17 @@ export const fetchBookmarks = createAsyncThunk(
 );
 
 const bookmarkSlice = createSlice({
-  name: "bookmark",
+  name: 'bookmark',
   initialState: {
     bookmarks: [],
     isLoading: false,
     error: null
   },
-  reducers: {},
+  reducers: {
+    clearBookmarks: (state) => {
+      state.bookmarks = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchBookmarks.pending, (state) => {

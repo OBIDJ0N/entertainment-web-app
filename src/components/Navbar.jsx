@@ -1,22 +1,16 @@
 import { Avatar, Box, Button, Input, Stack } from '@mui/material';
 import React, { useCallback, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { logOutUser } from '../slice/auth';
 import { logo, search } from '../constants';
 import { Icons } from '../ui';
 import { Link, useNavigate } from 'react-router-dom';
 import { removeItem } from '../helpers/persistance-storage';
-import AuthService from '../service/auth';
 import _ from 'lodash';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate()
+    const { loggedIn } = useSelector(state => state.auth)
     const [value, setValue] = useState('')
-    const clickHandler = () => {
-        AuthService.userLogout();
-        dispatch(logOutUser());
-    };
     const onChangeHandler = useCallback(
         _.debounce((newValue) => {
             if (newValue.trim()) {
@@ -36,7 +30,7 @@ const Navbar = () => {
 
     return (
         <>
-        {/* <Button onClick={() => clickHandler()}>Log out</Button> */}
+            {/* <Button onClick={() => clickHandler()}>Log out</Button> */}
             <Stack mt={'2rem'} ml={'2rem'} className='max-tablet:mx-6 max-tablet:mb-0 max-phone:mx-4'>
                 <Box display={'flex'} flexDirection={'column'} alignItems={'center'} position={'fixed'} mb={'2rem'} className='bg-semi-dark-blue px-7 py-8 rounded-[1.25rem] w-max desktop:h-4/5 main max-tablet:flex-row max-tablet:justify-between max-tablet:h-auto max-tablet:mx-6 max-tablet:left-0 max-tablet:right-0 max-tablet:z-50 max-tablet:py-5 max-tablet:pl-6 max-tablet:px-4 max-tablet:w-auto max-phone:top-0 max-phone:mx-0 max-phone:rounded-none max-phone:px-4'>
                     <Link to={'/'} onClick={() => removeItem('activeButton')}>
@@ -45,7 +39,7 @@ const Navbar = () => {
                     <Stack alignItems={'flex-start'} mt={'4.75rem'} gap={'2.5rem'} className='max-tablet:flex-row max-tablet:mt-0'>
                         <Icons />
                     </Stack>
-                    <Link to={'/'} className='mt-auto' onClick={() => removeItem('activeButton')}>
+                    <Link to={`${loggedIn ? '/profile' : '/login'}`} className='mt-auto' onClick={() => removeItem('activeButton')}>
                         <Avatar className='max-phone:w-6 max-phone:h-6' />
                     </Link>
                 </Box>
