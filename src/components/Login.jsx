@@ -34,16 +34,19 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if(loggedIn) {
+    if (loggedIn) {
       navigate('/')
     }
   }, [loggedIn, navigate])
 
   return (
     <Box className='bg-dark-blue h-dvh flex justify-center'>
-      <Stack className='max-w-[25rem] w-full h-fi mt-[4.901rem]'>
-        <Box component={'img'} src={logo} width={'2rem'} mx={'auto'} />
-        <form onSubmit={handleRegister} className='text-white bg-semi-dark-blue p-8 rounded-[1.25rem] mt-[5.187rem]'>
+      <Stack className='max-w-[25rem] w-full mt-[4.901rem] mx-6'>
+        <Link to={'/'}>
+          <Box component={'img'} src={logo} width={'2rem'} mx={'auto'} />
+        </Link>
+        <form onSubmit={handleRegister} className='text-white bg-semi-dark-blue p-8 rounded-[1.25rem] mt-[5.187rem] max-phone:p-6 max-phone:pb-7 max-phone:rounded-[.625rem]'>
+          <Typography className='text-3xl mb-6'>Login</Typography>
           {errors && <Alert severity="error">{errors.slice(22, -2)}</Alert>}
           <Box component={'div'} display={'flex'} className='input-box focus-within:border-b-white flex items-center'>
             <Input state={email} setState={setEmail} type={'email'} placeholder={'Email address'} className={`form-input ${error && email === '' ? 'w-[70%]' : ''}`} />

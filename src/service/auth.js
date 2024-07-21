@@ -1,6 +1,20 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
-import { auth, db } from '../firebase';
+import { 
+    createUserWithEmailAndPassword, 
+    onAuthStateChanged, 
+    signInWithEmailAndPassword, 
+    signOut, 
+    updateProfile, 
+    updatePassword, 
+    reauthenticateWithCredential, 
+    EmailAuthProvider 
+} from 'firebase/auth';
+import { auth, db, storage } from '../firebase';
 import { addDoc, collection } from 'firebase/firestore';
+import { 
+    getDownloadURL, 
+    ref as storageRef, 
+    uploadBytes 
+} from "firebase/storage";
 
 const AuthService = {
     async userRegister(email, password) {
@@ -24,26 +38,24 @@ const AuthService = {
     },
     async reauthenticate(user, currentPassword) {
         const credential = EmailAuthProvider.credential(user.email, currentPassword);
-        try {
-            await reauthenticateWithCredential(user, credential);
-        } catch (error) {
-            throw new Error('Reauthentication failed: ' + error.message);
-        }
+        await reauthenticateWithCredential(user, credential);
     },
-    
     async updateProfileDetails(user, name, password) {
-        try {
-            if (name) {
-                await updateProfile(user, { displayName: name });
-            }
-            if (password) {
-                await updatePassword(user, password);
-            }
-            return 'Profile updated successfully.';
-        } catch (error) {
-            throw new Error('Error updating profile: ' + error.message);
+        if (name) {
+            await updateProfile(user, { displayName: name });
         }
+        if (password) {
+            await updatePassword(user, password);
+        }
+        return user
     },
+    async uploadProfilePicture(user, file) {
+        const imageRef = storageRef(storage, `profile-pictures/${user.uid}/${file.name}`);
+        const snapshot = await uploadBytes(imageRef, file);
+        const downloadURL = await getDownloadURL(snapshot.ref);
+        await updateProfile(user, { photoURL: downloadURL });
+        return downloadURL;
+    }
 };
 
 export default AuthService;

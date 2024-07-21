@@ -18,6 +18,7 @@ export const authSlice = createSlice({
             state.loggedIn = true;
             state.isLoading = false;
             state.user = action.payload;
+            state.errors = null;
         },
         registerAndLoginFailure: (state, action) => {
             state.isLoading = false;
@@ -27,9 +28,21 @@ export const authSlice = createSlice({
             state.user = null;
             state.loggedIn = false;
         },
+        updateProfilestart: (state) => {
+            state.isLoading = true;
+        },
+        updateProfileSuccess: (state, action) => {
+            state.isLoading = false;
+            state.user = action.payload;
+            state.errors = null;
+        },
+        updateProfileFailure: (state, action) => {
+            state.isLoading = false;
+            state.errors = action.payload;
+        }
     },
 });
 
 
-export const { registerAndLoginStart, registerAndLoginSuccess, registerAndLoginFailure, logOutUser } = authSlice.actions;
+export const { registerAndLoginStart, registerAndLoginSuccess, registerAndLoginFailure, logOutUser, updateProfilestart, updateProfileSuccess, updateProfileFailure } = authSlice.actions;
 export default authSlice.reducer;

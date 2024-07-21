@@ -5,6 +5,7 @@ import { logOutUser } from '../slice/auth';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Box, Button, Stack, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import moment from 'moment/moment';
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -19,15 +20,15 @@ const Profile = () => {
     console.log(user);
     return (
         <>
-            <Stack display={'flex'} alignItems={'center'}>
-                <Box className='max-w-[15rem] w-full mt-[4.901rem] text-white'>
+            <Stack display={'flex'} alignItems={'center'} mx={'1rem'}>
+                <Box className='max-w-[20rem] w-full mt-[4.901rem] text-white'>
                     <Typography className='text-3xl mb-8 text-center'>Profile</Typography>
                     <Avatar
                         alt={''}
                         src={user?.photoURL}
-                        sx={{ width: 100, height: 100, margin: 'auto' }}
+                        sx={{ width: 150, height: 150, margin: 'auto' }}
                     />
-                    <Stack display={'flex'} flexDirection={'column'} justifyContent={'space-between'} mt={'1rem'}>
+                    <Stack mt={'2rem'}>
                         <Typography className='text-xl'>
                             Display name:
                         </Typography>
@@ -35,12 +36,20 @@ const Profile = () => {
                             {user?.displayName || 'No'}
                         </Typography>
                     </Stack>
-                    <Stack display={'flex'} flexDirection={'column'} justifyContent={'space-between'} mt={'.5rem'}>
+                    <Stack mt={'.5rem'}>
                         <Typography className='text-xl'>
                             Email:
                         </Typography>
                         <Typography className='text-base'>
                             {user?.email}
+                        </Typography>
+                    </Stack>
+                    <Stack mt={'.5rem'}>
+                        <Typography className='text-xl'>
+                            Member since:
+                        </Typography>
+                        <Typography className='text-base'>
+                            {moment(user?.metadata?.creationTime).format('MMMM Do, YYYY')}
                         </Typography>
                     </Stack>
                     <Typography variant="body1" component="div" sx={{ mb: 2 }}>

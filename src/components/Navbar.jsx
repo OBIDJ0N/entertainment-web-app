@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 const Navbar = () => {
     const navigate = useNavigate()
-    const { loggedIn } = useSelector(state => state.auth)
+    const { loggedIn, user } = useSelector(state => state.auth)
     const [value, setValue] = useState('')
     const onChangeHandler = useCallback(
         _.debounce((newValue) => {
@@ -40,7 +40,7 @@ const Navbar = () => {
                         <Icons />
                     </Stack>
                     <Link to={`${loggedIn ? '/profile' : '/login'}`} className='mt-auto' onClick={() => removeItem('activeButton')}>
-                        <Avatar className='max-phone:w-6 max-phone:h-6' />
+                        <Avatar src={user?.photoURL} className='max-phone:w-6 max-phone:h-6' />
                     </Link>
                 </Box>
                 <Box ml={'6rem'} className='max-tablet:ml-0'>
