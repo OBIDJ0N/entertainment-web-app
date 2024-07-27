@@ -44,7 +44,6 @@ const useBookmark = (item) => {
       }
       setIsBookmarked(prev => !prev);
       dispatch(fetchBookmarks());
-      console.log(isBookmarked);
     } catch (error) {
       console.error("Error updating bookmark:", error.message);
     }

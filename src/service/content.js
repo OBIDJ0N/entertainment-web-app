@@ -49,7 +49,16 @@ const ContentService = {
             },
         });
         return data;
-    }
+    },
+    async getCastsDetail(name,id) {
+        const { data } = await axios.get(`/${name}/${id}`, {
+            params: {
+                language: 'en-US',
+                append_to_response: 'combined_credits,external_ids',
+            },
+        });
+        return data;
+    },
 };
 
 export default ContentService;

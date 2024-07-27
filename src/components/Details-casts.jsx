@@ -4,8 +4,11 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules'
 import { Card, CardContent, CardMedia, Typography, Skeleton } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const DetailsCasts = ({ casts }) => {
+    const navigate = useNavigate()
+
     return (
         <>
             {casts && casts.length > 0 && (
@@ -29,6 +32,7 @@ const DetailsCasts = ({ casts }) => {
                                             image={`http://image.tmdb.org/t/p/original${item.profile_path}`}
                                             alt={item.name}
                                             className='w-40 h-[10.875rem] object-cover rounded-lg'
+                                            onClick={() => navigate(`/detail/person/${item.id}`)}
                                         />
                                     ) : (
                                         <Skeleton animation="wave" className="h-[10.875rem] bg-semi-dark-blue" variant="rectangular" />

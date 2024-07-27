@@ -17,7 +17,6 @@ const Profile = () => {
         dispatch(logOutUser());
         navigate('/')
     };
-    console.log(user);
     return (
         <>
             <Stack display={'flex'} alignItems={'center'} mx={'1rem'}>

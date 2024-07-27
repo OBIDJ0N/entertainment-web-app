@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Route, Routes, useMatch, useNavigate } from 'react-router-dom';
-import { Bookmark, Details, EditProfile, Login, Main, Movie, Navbar, Profile, Register, Search, Tv } from './components';
+import { Bookmark, CastsDetails, Details, EditProfile, Login, Main, Movie, Navbar, Profile, Register, Search, Tv } from './components';
 import { ThemeProvider } from '@mui/material';
 import theme from './theme';
 import AuthService from './service/auth';
@@ -58,6 +58,7 @@ const App = () => {
         <Route path='/bookmark' element={<Bookmark />} />
         <Route path='/search/:query' element={<Search />} />
         <Route path='/detail/:type/:id' element={<Details />} />
+        <Route path='/detail/person/:id' element={<CastsDetails />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/edit-profile' element={<EditProfile />} />
       </Routes>

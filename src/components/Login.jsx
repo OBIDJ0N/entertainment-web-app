@@ -27,7 +27,6 @@ const Login = () => {
       const response = await AuthService.userLogin(email, password)
       dispatch(registerAndLoginSuccess(response))
       navigate('/')
-      console.log(response);
     } catch (error) {
       dispatch(registerAndLoginFailure(error.message))
     }

@@ -10,7 +10,8 @@ const initialState = {
     topRatedTvs: [],
     movies: [],
     tvs: [],
-    details: null
+    details: null,
+    castsDetails: null,
 };
 
 const handleStart = (state) => {
@@ -61,7 +62,11 @@ export const contentSlice = createSlice({
 
         getDetailsStart: handleStart,
         getDetailsSuccess: (state, action) => handleSuccess(state, action, 'details'),
-        getDetailsFailure: handleFailure
+        getDetailsFailure: handleFailure,
+
+        getCastsDetailsStart: handleStart,
+        getCastsDetailsSuccess: (state, action) => handleSuccess(state, action, 'castsDetails'),
+        getCastsDetailsFailure: handleFailure,
     },
 });
 
@@ -73,7 +78,8 @@ export const {
     getTopRatedTvsStart, getTopRatedTvsSuccess, getTopRatedTvsFailure,
     getMoviesStart, getMoviesSucces, getMoviesFailure,
     getTvsStart, getTvsSucces, getTvsFailure ,
-    getDetailsStart, getDetailsSuccess, getDetailsFailure
+    getDetailsStart, getDetailsSuccess, getDetailsFailure,
+    getCastsDetailsStart, getCastsDetailsSuccess, getCastsDetailsFailure
 } = contentSlice.actions;
 
 export default contentSlice.reducer;

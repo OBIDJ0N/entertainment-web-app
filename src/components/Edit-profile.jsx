@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, Avatar, Box, Button, IconButton, Stack, Typography } from '@mui/material';
+import { Alert, Avatar, Box, Button, CircularProgress, IconButton, Stack, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Input } from '../ui';
@@ -11,7 +11,7 @@ import { updateProfileFailure, updateProfilestart, updateProfileSuccess } from '
 const EditProfile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
-    const { errors } = useSelector(state => state.auth)
+    const { errors, isLoading } = useSelector(state => state.auth)
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -120,7 +120,7 @@ const EditProfile = () => {
                                 Cancel
                             </Button>
                             <Button type='submit' variant='contained' className='w-full text-dark-blue bg-white hover:bg-greyish-blue hover:text-white normal-case rounded-md'>
-                                Save
+                                {isLoading ? <CircularProgress size={20} className='text-dark-blue' /> : 'Save'}
                             </Button>
                         </Stack>
                     </Stack>
