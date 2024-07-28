@@ -61,7 +61,7 @@ const SmallCards = ({ item }) => {
           <span className="mx-2 opacity-75">·</span>
           <Typography className="opacity-75 text-sm max-phone:text-[11px]">{item.video === false ? 'Movie' : 'TV Series '}</Typography>
         </Stack>
-        <Typography className="text-xl max-phone:text-base max-phone:font-bold">{(item.title || item.name).length >= 50 ? (item.title || item.name).slice(0,38) + '...' : (item.title || item.name)}</Typography>
+        <Typography className="text-xl max-phone:text-base max-phone:font-bold">{(item.title || item.name).length >= 30 ? (item.title || item.name).slice(0,25) + '...' : (item.title || item.name)}</Typography>
       </Box>
     </Card>
   );

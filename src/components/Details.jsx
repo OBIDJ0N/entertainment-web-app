@@ -25,7 +25,6 @@ const Details = () => {
   const navigate = useNavigate()
 
   useFetchContent(ContentService.getDetail, getDetailsStart, getDetailsSuccess, getDetailsFailure, type, id)
-  console.log(details);
 
   return (
     isLoading ? (

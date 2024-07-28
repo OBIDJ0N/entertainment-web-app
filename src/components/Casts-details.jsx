@@ -8,12 +8,8 @@ import { getCastsDetailsStart, getCastsDetailsSuccess } from '../slice/content';
 import { useSelector } from 'react-redux';
 import { iconsArray } from '../constants/Icons';
 import moment from 'moment/moment';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import SmallCards from './Small-cards';
 import { v4 as uuidv4 } from 'uuid';
+import { Swipers, SwipersSkeletons } from '../ui';
 
 const CastsDetails = () => {
     const { castsDetails, isLoading } = useSelector(state => state.content);
@@ -61,7 +57,7 @@ const CastsDetails = () => {
                     </Stack>
                     {isLoading ? (
                         <>
-                            <Skeleton variant='text' animation="wave" className='bg-semi-dark-blue w-2/12 h-12' />
+                            <Skeleton variant='text' animation="wave" className='bg-semi-dark-blue w-1/3 h-12' />
                             <Stack className='max-laptop:flex-row max-laptop:gap-4 max-laptop:flex-wrap mt-5'>
                                 {Array.from({ length: 5 }).map(() => (
                                     <Box key={uuidv4()}>
@@ -103,7 +99,7 @@ const CastsDetails = () => {
                     {isLoading ? (
                         <>
                             <Skeleton variant='text' animation="wave" className='bg-semi-dark-blue w-2/5 h-16' />
-                            <Skeleton variant='text' animation="wave" className='bg-semi-dark-blue w-2/12 h-12 mt-5' />
+                            <Skeleton variant='text' animation="wave" className='bg-semi-dark-blue w-1/3 h-12 mt-5' />
                             <Skeleton variant='rectangular' animation="wave" className='bg-semi-dark-blue w-full h-40 ' />
                         </>
                     ) : (
@@ -117,87 +113,19 @@ const CastsDetails = () => {
                     )}
                     <Box width={'100%'}>
                         {isLoading ? (
-                            <>
-                                <Skeleton variant='text' animation="wave" className='bg-semi-dark-blue w-2/12 h-12 mt-5' />
-                                <Box width='100%' overflow='hidden'>
-                                    <Swiper
-                                        slidesPerView={'auto'}
-                                        spaceBetween={20}
-                                        className="mySwiper mt-4 custom-swiper similar-swiper"
-                                        grabCursor={true}
-                                    >
-                                        {Array.from({ length: 10 }).map((_, index) => (
-                                            <SwiperSlide className='w-40' key={index}>
-                                                <Skeleton animation="wave" className="h-[10.875rem] max-tablet:h-[8.75rem] max-phone:h-[6.875rem] bg-semi-dark-blue" variant="rectangular" />
-                                                <Skeleton animation="wave" className="w-2/4 bg-semi-dark-blue" variant="text" />
-                                                <Skeleton animation="wave" className="w-3/4 bg-semi-dark-blue" variant="text" />
-                                            </SwiperSlide>
-                                        ))}
-                                    </Swiper>
-                                </Box>
-                            </>
+                            <SwipersSkeletons />
                         ) : (
                             castsDetails?.combined_credits && castsDetails?.combined_credits.cast.length > 0 && (
-                                <>
-                                    <Typography className='text-2xl mt-4'>Known For</Typography>
-                                    <Box width='100%' overflow='hidden'>
-                                        <Swiper
-                                            slidesPerView={'auto'}
-                                            spaceBetween={20}
-                                            className="mySwiper mt-4 custom-swiper similar-swiper"
-                                            grabCursor={true}
-                                        >
-                                            {castsDetails?.combined_credits.cast.filter(item => item.vote_average > 7).map(item => (
-                                                <SwiperSlide key={uuidv4()} className='w-40'>
-                                                    <SmallCards item={item} />
-                                                </SwiperSlide>
-                                            ))}
-                                        </Swiper>
-                                    </Box>
-                                </>
+                                <Swipers items={castsDetails?.combined_credits.cast.filter(item => item.vote_average > 7)} title={'Known For'} />
                             )
                         )}
                     </Box>
                     <Box width={'100%'}>
                         {isLoading ? (
-                            <>
-                                <Skeleton variant='text' animation="wave" className='bg-semi-dark-blue w-2/12 h-12 mt-5' />
-                                <Box width='100%' overflow='hidden'>
-                                    <Swiper
-                                        slidesPerView={'auto'}
-                                        spaceBetween={20}
-                                        className="mySwiper mt-4 custom-swiper similar-swiper"
-                                        grabCursor={true}
-                                    >
-                                        {Array.from({ length: 10 }).map((_, index) => (
-                                            <SwiperSlide className='w-40' key={index}>
-                                                <Skeleton animation="wave" className="h-[10.875rem] max-tablet:h-[8.75rem] max-phone:h-[6.875rem] bg-semi-dark-blue" variant="rectangular" />
-                                                <Skeleton animation="wave" className="w-2/4 bg-semi-dark-blue" variant="text" />
-                                                <Skeleton animation="wave" className="w-3/4 bg-semi-dark-blue" variant="text" />
-                                            </SwiperSlide>
-                                        ))}
-                                    </Swiper>
-                                </Box>
-                            </>
+                            <SwipersSkeletons />
                         ) : (
                             castsDetails?.combined_credits && castsDetails?.combined_credits.cast.length > 0 && (
-                                <>
-                                    <Typography className='text-2xl mt-4'>Acting</Typography>
-                                    <Box width='100%' overflow='hidden'>
-                                        <Swiper
-                                            slidesPerView={'auto'}
-                                            spaceBetween={20}
-                                            className="mySwiper mt-4 custom-swiper similar-swiper"
-                                            grabCursor={true}
-                                        >
-                                            {castsDetails?.combined_credits.cast.map(item => (
-                                                <SwiperSlide key={uuidv4()} className='w-40'>
-                                                    <SmallCards item={item} />
-                                                </SwiperSlide>
-                                            ))}
-                                        </Swiper>
-                                    </Box>
-                                </>
+                                <Swipers items={castsDetails?.combined_credits.cast} title={'Acting'} />
                             )
                         )}
                     </Box>
