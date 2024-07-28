@@ -23,7 +23,7 @@ const CastsDetails = () => {
     return (
         <Stack className='mx-10 text-white max-tablet:mx-6 max-phone:mx-4 pb-10'>
             <Stack mt={'1.25rem'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
-                <Button onClick={() => navigate(-1)} className='rounded-full text-white w-max mr-auto' startIcon={<ArrowBackIosNewIcon className='text-3xl' />} />
+                <Button onClick={() => navigate(-1)} className='rounded-full text-white w-max mr-auto min-w-max' startIcon={<ArrowBackIosNewIcon className='text-3xl' />} />
                 <Typography className='text-3xl mr-auto max-tablet:text-2xl'>Cast's details</Typography>
             </Stack>
             <Stack mt={'2.5rem'} flexDirection={'row'} gap={'2.5rem'} className='max-laptop:flex-col'>
