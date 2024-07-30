@@ -11,8 +11,9 @@ Welcome to the Entertainment-web-app! This application allows users to browse, s
 - **User Profile:** Users can update their profile details.
 - **Movie and TV Series Details:** View detailed information about a specific movie or TV series.
 - **Similar Movies and TV Series:** Discover similar movies and TV series based on the current selection.
-- **Cast Details:** Display cast information including their social media IDs (Facebook, Instagram, Twitter, and YouTube).
+- **Cast Details:** Display cast information including their social media IDs (Facebook, Instagram, Twitter, TikTok and YouTube).
 - **YouTube Trailers:** Watch trailers using `ReactPlayer` integrated with YouTube.
+- **Genre Selection:** Browse movies and TV series by selecting specific genres.
 
 ## Tech Stack
 

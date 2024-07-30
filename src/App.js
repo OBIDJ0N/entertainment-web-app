@@ -1,18 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Route, Routes, useMatch, useNavigate } from 'react-router-dom';
-import { Bookmark, CastsDetails, Details, EditProfile, Login, Main, Movie, Navbar, Profile, Register, Search, Tv } from './components';
+import { Route, Routes, useMatch } from 'react-router-dom';
+import { Bookmark, CastsDetails, Details, EditProfile, Genres, GenresContent, Login, Main, Movie, Navbar, Profile, Register, Search, Tv } from './components';
 import { ThemeProvider } from '@mui/material';
 import theme from './theme';
 import AuthService from './service/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { logOutUser, registAndLoginSuccess, registerAndLoginSuccess } from './slice/auth';
+import { logOutUser, registerAndLoginSuccess } from './slice/auth';
 import LoadingBar from 'react-top-loading-bar';
 import { Alerts } from './ui';
 
 const App = () => {
   const { loggedIn } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const ref = useRef(null)
   const isLoginPage = useMatch('/login')
@@ -36,15 +35,6 @@ const App = () => {
     return () => unsubscribe();
   }, [dispatch]);
   
-
-  // useEffect(() => {
-  //   if (!loading) {
-  //     if (!loggedIn && window.location.pathname !== '/signup') {
-  //       navigate('/login'); 
-  //     }
-  //   }
-  // }, [loggedIn, loading, navigate]);
-  
   return (
     <ThemeProvider theme={theme}>
       <LoadingBar color="#f11946" ref={ref} shadow={true} height={3} />
@@ -55,6 +45,8 @@ const App = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/movie' element={<Movie />} />
         <Route path='/tv' element={<Tv />} />
+        <Route path='/genre/:type' element={<Genres />} />
+        <Route path='/genre/:type/:id' element={<GenresContent />} />
         <Route path='/bookmark' element={<Bookmark />} />
         <Route path='/search/:query' element={<Search />} />
         <Route path='/detail/:type/:id' element={<Details />} />

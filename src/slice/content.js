@@ -12,6 +12,8 @@ const initialState = {
     tvs: [],
     details: null,
     castsDetails: null,
+    listOfGenres: [],
+    genres: []
 };
 
 const handleStart = (state) => {
@@ -67,6 +69,14 @@ export const contentSlice = createSlice({
         getCastsDetailsStart: handleStart,
         getCastsDetailsSuccess: (state, action) => handleSuccess(state, action, 'castsDetails'),
         getCastsDetailsFailure: handleFailure,
+
+        getListOfGenresStart: handleStart,
+        getListOfGenresSuccess: (state, action) => handleSuccess(state, action, 'listOfGenres'),
+        getListOfGenresFailure: handleFailure,
+
+        getGenresStart: handleStart,
+        getGenresSuccess: (state, action) => handleSuccess(state, action, 'genres'),
+        getGenresFailure: handleFailure,
     },
 });
 
@@ -79,7 +89,9 @@ export const {
     getMoviesStart, getMoviesSucces, getMoviesFailure,
     getTvsStart, getTvsSucces, getTvsFailure ,
     getDetailsStart, getDetailsSuccess, getDetailsFailure,
-    getCastsDetailsStart, getCastsDetailsSuccess, getCastsDetailsFailure
+    getCastsDetailsStart, getCastsDetailsSuccess, getCastsDetailsFailure,
+    getListOfGenresStart, getListOfGenresSuccess, getListOfGenresFailure,
+    getGenresStart, getGenresSuccess, getGenresFailure
 } = contentSlice.actions;
 
 export default contentSlice.reducer;

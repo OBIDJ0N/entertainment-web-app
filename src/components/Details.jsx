@@ -26,6 +26,12 @@ const Details = () => {
 
   useFetchContent(ContentService.getDetail, getDetailsStart, getDetailsSuccess, getDetailsFailure, type, id)
 
+  const clickHandler = (genre) => {
+    const genreType = details?.video === false ? 'movie' : 'tv';
+    navigate(`/genre/${genreType}/${genre}`);
+  };
+  
+
   return (
     isLoading ? (
       <Stack>
@@ -62,7 +68,7 @@ const Details = () => {
                 <Typography className='text-white text-3xl max-phone:text-[1.25rem] font-bold max-phone:text-2xl'>{details.title || details.name}</Typography>
                 <Stack display={'flex'} flexDirection={'row'} flexWrap={'wrap'} gap={'.5rem'} mt={'.5rem'}>
                   {details.genres.map(item => (
-                    <Button className='rounded-3xl bg-greyish-blue bg-opacity-40 px-3 normal-case' variant='contained' key={item.id}>{item.name}</Button>
+                    <Button className='rounded-3xl bg-greyish-blue bg-opacity-40 px-3 normal-case' variant='contained' key={item.id} onClick={() => clickHandler(item.id)}>{item.name}</Button>
                   ))}
                 </Stack>
                 <Stack display={'flex'} flexDirection={'row'} mt={'.7rem'} alignItems={'center'}>

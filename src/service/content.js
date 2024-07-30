@@ -59,6 +59,26 @@ const ContentService = {
         });
         return data;
     },
+    async getListOfGenres(name) {
+        const { data } = await axios.get(`/genre/${name}/list`, {
+            params: {
+                language: 'en-US',
+            },
+        });
+        return data;
+    },
+    async getGenres(name, id, page) {
+        const { data } = await axios.get(`/discover/${name}`, {
+            params: {
+                language: 'en-US',
+                with_genres: id,
+                include_adult: false,
+                page: page,
+                sort_by: 'popularity.desc',
+            },
+        });
+        return data;
+    },
 };
 
 export default ContentService;
