@@ -30,13 +30,12 @@ const Navbar = () => {
 
     return (
         <>
-            {/* <Button onClick={() => clickHandler()}>Log out</Button> */}
             <Stack mt={'2rem'} ml={'2rem'} className='max-tablet:mx-6 max-tablet:mb-0 max-phone:mx-4'>
                 <Box display={'flex'} flexDirection={'column'} alignItems={'center'} position={'fixed'} mb={'2rem'} className='bg-semi-dark-blue px-7 py-8 rounded-[1.25rem] w-max desktop:h-4/5 main max-tablet:flex-row max-tablet:justify-between max-tablet:h-auto max-tablet:mx-6 max-tablet:left-0 max-tablet:right-0 max-tablet:z-50 max-tablet:py-5 max-tablet:pl-6 max-tablet:px-4 max-tablet:w-auto max-phone:top-0 max-phone:mx-0 max-phone:rounded-none max-phone:px-4'>
                     <Link to={'/'} onClick={() => removeItem('activeButton')}>
                         <Box component={'img'} src={logo} width={'2rem'} className='max-phone:w-6' />
                     </Link>
-                    <Stack alignItems={'flex-start'} mt={'4.75rem'} gap={'2.5rem'} className='max-tablet:flex-row max-tablet:mt-0'>
+                    <Stack alignItems={'flex-start'} mt={'4.75rem'} gap={'2.5rem'} className='max-tablet:flex-row max-tablet:mt-0 max-tablet:gap-8 max-phone:gap-6'>
                         <Icons />
                     </Stack>
                     <Link to={`${loggedIn ? '/profile' : '/login'}`} className='mt-auto' onClick={() => removeItem('activeButton')}>
