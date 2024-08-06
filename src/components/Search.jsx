@@ -22,7 +22,7 @@ const Search = () => {
     return (
         <Stack ml={'10.25rem'} pb={'3.375rem'} className="max-tablet:mx-6 max-phone:mx-4">
             <Typography className='text-white text-3xl max-phone:text-[1.25rem] mb-8 mt-2'>
-                Found {items?.total_results} result for '{query}'
+                Found {items?.total_results} results for '{query}'
             </Typography>
             {isLoading ? (
                 <Stack className="grid grid-cols-5 gap-x-10 gap-y-8 max-desktop:grid-cols-4 max-laptop:grid-cols-3 mr-[2.25rem] max-tablet:mr-0 max-phone:grid-cols-2 max-tablet:gap-x-[1.875rem] max-tablet:gap-y-6 max-phone:gap-4">

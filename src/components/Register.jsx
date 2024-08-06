@@ -54,7 +54,7 @@ const Register = () => {
         </Link>
         <form onSubmit={handleRegister} className='text-white bg-semi-dark-blue p-8 rounded-[1.25rem] mt-[5.187rem] max-phone:p-6 max-phone:pb-7 max-phone:rounded-[.625rem]'>
           <Typography className='text-3xl mb-6'>Sign Up</Typography>
-          {errors && <Alert severity="error">{errors.slice(22, -2)}</Alert>}
+          {errors && <Alert severity="error">{errors.slice(10)}</Alert>}
           <Box component={'div'} display={'flex'} className='input-box focus-within:border-b-white flex items-center'>
             <Input state={email} setState={setEmail} type={'email'} placeholder={'Email address'} className={`form-input ${error && email === '' ? 'w-[70%]' : ''}`} />
             {error && email === '' && <Typography variant='subtitle2' className='text-red'>{error}</Typography>}

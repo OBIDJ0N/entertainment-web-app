@@ -56,7 +56,7 @@ const Login = () => {
             {error && password === '' && <Typography variant='subtitle2' className='text-red'>{error}</Typography>}
           </Box>
           <Button type='submit' variant='contained' className='w-full bg-red hover:bg-white hover:text-dark-blue mt-6 normal-case py-[.75rem] rounded-md'>
-            {isLoading ? <CircularProgress size={20} className='text-dark-blue' /> : 'Login to your accounty'}
+            {isLoading ? <CircularProgress size={20} className='text-dark-blue' /> : 'Login to your account'}
           </Button>
           <Typography textAlign={'center'} mt={'1.5rem'} className='text-base'>
             Don’t have an account? <Link to={'/signup'} className='text-red ml-1'>Sign Up</Link>

@@ -3,7 +3,7 @@ import BookmarkService from '../service/bookmark';
 import { useDispatch } from 'react-redux';
 import useAuth from './useAuth';
 import { fetchBookmarks } from '../slice/bookmark';
-import { bookmarkedFailure, bookmarkedSuccess, clearAlert } from '../slice/alert';
+import { bookmarkedFailure, bookmarkedSuccess } from '../slice/alert';
 
 const useBookmark = (item) => {
   const [isBookmarked, setIsBookmarked] = useState(false);

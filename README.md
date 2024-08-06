@@ -2,6 +2,9 @@
 
 Welcome to the Entertainment-web-app! This application allows users to browse, search, and bookmark movies and TV series. It is built with React and uses Firebase for authentication and Firestore for storing user data. The app leverages the TMDB API to fetch movie and TV series information.
 
+## Live site
+Check out the live site [here](https://entertainment-web-app-e6674.web.app/).
+
 ## Features
 
 - **User Authentication:** Users can sign up, log in, and log out using Firebase Authentication.
